@@ -1,7 +1,7 @@
 # json.decoder.JSONDecodeError
 from json import JSONDecodeError
+from pickle import TRUE
 import json
-import os
 
 
 def read_json(filepath: str) -> list:
@@ -22,12 +22,12 @@ def create_json(filepath: str) -> list:
     return read_json(filepath)
 
 
-def write_json(filepath: str, payload: dict):
+def write_json(filepath: str, payload: dict) -> dict:
     json_list = read_json(filepath).get("data")
     json_list.append(payload)
 
     with open(filepath, "w") as json_file:
-        json.dump({"data": json_list}, json_file, indent=2)
+        json.dump({"data": json_list}, json_file, indent=2, sort_keys=TRUE)
 
     return payload
 
